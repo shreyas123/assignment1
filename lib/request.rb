@@ -8,12 +8,12 @@ class Request
 	def self.request(url)
 		req = Request.new(url)
 		response = req.fetch(url)
-		response
+		return {'code' => response.code, 'body' => response.body }
 	end
 
 	def fetch(uri_str, limit = 10)
 		# You should choose a better exception.
-		return 'too many HTTP redirects' if limit == 0
+		return Error.new('400', 'too many redirects') if limit == 0
 
 		response = Net::HTTP.get_response(URI(uri_str))
 
@@ -24,9 +24,15 @@ class Request
 				location = response['location']
 				warn "redirected to #{location}"
 				fetch(location, limit - 1)
-			else
-				response
 		end
 	end
 
+end
+
+class Error
+	attr_accessor :code, :body
+	def initialize(code, message)
+		@code = code
+		@body = body
+	end
 end
