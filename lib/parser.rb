@@ -41,11 +41,11 @@ class Parser
 		if link.start_with?("/") || link.start_with?("#")
 			url = URI.join(@host, link)
 		else
-			url = URI.parse(link)
-			url = URI.parse("http://#{link}") if url.scheme.nil?
+			url = URI.parse(link) rescue nil
+			url = URI.parse("http://#{link}") if url and url.scheme.nil? rescue nil
 		end
 
-		if url.host == URI(@host).host && url.path != ""
+		if url and url.host == URI(@host).host && url.path != ""
 			url.to_s
 		else
 			nil

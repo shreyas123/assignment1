@@ -15,15 +15,21 @@ class Request
 		# You should choose a better exception.
 		return Error.new('400', 'too many redirects') if limit == 0
 
-		response = Net::HTTP.get_response(URI(uri_str))
+		begin
+
+			response = Net::HTTP.get_response(URI(uri_str))
+		rescue
+			return Error.new('400', 'too many redirects')
+		end
 
 		case response
 			when Net::HTTPSuccess then
 				response
 			when Net::HTTPRedirection then
 				location = response['location']
-				warn "redirected to #{location}"
 				fetch(location, limit - 1)
+			else
+				response
 		end
 	end
 
