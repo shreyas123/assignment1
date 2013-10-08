@@ -1,7 +1,8 @@
-Assignment 2 [![Build Status](https://travis-ci.org/shreyas123/assignment2.png?branch=master)](https://travis-ci.org/shreyas123/assignment2)
+Assignment 1 [![Build Status](https://travis-ci.org/shreyas123/assignment1.png?branch=master)](https://travis-ci.org/shreyas123/assignment1)
 ------------
 
-Write a program that prints the numbers from 1 to 100. But for multiples of three print "Fizz" instead of the number and for the multiples of five print "Buzz". For numbers which are multiples of both three and five print "FizzBuzz"
+Write a program that crawls a given website (up to 3 levels deep, maximum 50 pages) and counts all input elements (<input…) per page. The counts per page are for the inputs on that page plus all the inputs of the pages it refers to. Performance is a key factor so do a few optimizations 
+for performance, like concurrent processing of the web pages.
 
 Solution
 --------

@@ -14,7 +14,7 @@ def print_out(val, dash = 0)
 		dash.times { print "-" }
 		print " "
 
-		print "#{val1[0]} #{val1[1]}"
+		print "#{val1[0]} -  #{val1[1]} inputs"
 		puts ""
 		
 		if val1[2] && Array === val1[2]
